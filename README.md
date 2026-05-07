@@ -223,9 +223,7 @@ For OneMax, the GA is expected to converge to the maximum fitness value of 100.
 For Knapsack, the GA improves the best fitness over generations while respecting the capacity constraint.
 
 The generated curves show the fitness evolution during the optimization process.
-
 ---
-
 ## 11. Reflection
 
 The OOP implementation is more structured and easier to extend because each GA component is separated into a class or strategy. This makes the design clearer when adding new selection, crossover, or mutation methods. However, it requires more files and more boilerplate code.
@@ -233,6 +231,94 @@ The OOP implementation is more structured and easier to extend because each GA c
 The FP implementation is shorter and has a simpler data flow. Since the logic is expressed through functions, it is easier to trace how data moves through the algorithm. However, for a larger system, the lack of object boundaries may make the design harder to organize.
 
 Overall, both paradigms can implement the same GA correctly. OOP is better for extensibility and modular design, while FP is better for concise logic and functional composition.
+
+---
+## 12. Extended Features
+
+In addition to the required implementation, this project includes several extended features to improve usability, reporting, and extensibility.
+
+### 12.1 Combined Visualization
+
+The project automatically generates fitness evolution plots for both implementations.
+
+Generated files:
+
+```text
+reports/oop_curve.png
+reports/fp_curve.png
+```
+
+Each figure contains two subplots:
+
+- OneMax fitness evolution
+- Knapsack fitness evolution
+
+This makes it easier to observe the convergence behavior of both problems in each programming paradigm.
+
+Image preview:
+
+![OOP GA Report](reports/oop_curve.png)
+
+![FP GA Report](reports/fp_curve.png)
+
+---
+
+### 12.2 JSON Result Export
+
+The project exports detailed result files in JSON format.
+
+Generated files:
+
+```text
+reports/results_oop.json
+reports/results_fp.json
+```
+
+Each JSON file stores:
+
+- best fitness
+- best chromosome
+- runtime
+- fitness history over generations
+
+These files can be reused for later analysis, visualization, or comparison.
+
+---
+
+### 12.3 Reproducibility
+
+Both implementations use the same random seed:
+
+```text
+42
+```
+
+They also use the same GA parameters:
+
+- population size
+- number of generations
+- selection method
+- crossover probability
+- mutation probability
+- elitism count
+
+This ensures that the OOP and FP implementations can be compared fairly.
+
+---
+
+### 12.4 Extensible Design
+
+The OOP implementation is designed with interchangeable strategy classes.
+
+It can be extended by adding new implementations of:
+
+- `SelectionStrategy`
+- `CrossoverStrategy`
+- `MutationStrategy`
+
+For example, a new selection method can be added without modifying the main `GeneticAlgorithm` class.
+
+The FP implementation is also flexible because each GA operator is implemented as an independent function. Different operators can be tested by replacing or composing functions.
 
 ---
 
